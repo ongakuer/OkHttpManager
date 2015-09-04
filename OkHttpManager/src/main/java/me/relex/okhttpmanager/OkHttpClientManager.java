@@ -55,6 +55,9 @@ public class OkHttpClientManager {
 
     // Send Request
     public static void syncRequest(Request request, BaseCallback callback) {
+        if (callback == null) {
+            callback = sDefaultCallback;
+        }
         callback.onRequestStart();
         Call call = getInstance().getOkHttpClient().newCall(request);
         try {
